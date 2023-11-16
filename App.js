@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, ScrollView } from 'react-native';
 
 export default function App() {
 
@@ -26,8 +26,15 @@ export default function App() {
         <Button title="Add book" onPress={addBookHandler} />
       </View>
 
+
       <View style={styles.booksContainer}>
-        {books.map((book) => <Text key={book}>{book}</Text>)}
+        <ScrollView>
+          {books.map((book) => (
+            <View style={styles.bookItem}>
+              <Text style={styles.bookText} key={book}>{book}</Text>
+            </View>
+          ))}
+        </ScrollView>
       </View>
 
     </View>
@@ -60,6 +67,15 @@ const styles = StyleSheet.create({
   booksContainer: {
 
     flex: 4
+  },
+  bookItem: {
+    margin: 8,
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: '#5e0acc',
+  },
+  bookText: {
+    color: 'white',
   }
 
 });
